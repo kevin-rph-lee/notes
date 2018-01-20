@@ -17,3 +17,15 @@ $.ajax({
 
 Click button:
 
+$('.submit').click(function(){
+  //Code will run when the element of the submit class is clicked
+});
+
+
+Have something fade away after a bit:
+
+window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+          window.location.replace('/tournaments/new');
+        });
+      }, 4000);

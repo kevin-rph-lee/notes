@@ -22,6 +22,7 @@ array.map(()=>{}); =  iterates through array and runs the func against every ele
 var.toFixed(decimalplaces) = shows as many decimal places as prescribed
 isNaN(var) = returns true if var is not a number
 Number.isInteger(var) = returns true if var is an int
+Object.keys(obj).forEach((i) => {console.log(i)}) = goes through each key in the object and runs a func on it, with i being passed to the func
 
 Random number generator:
 
@@ -81,3 +82,5 @@ case <values that compares to var1>:
   default;
     <code runs if no case equals var1>;
 }
+
+Object Keys:
