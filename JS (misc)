@@ -1,0 +1,60 @@
+Special Characters
+\t  = Tab
+\\ = backslash
+\n = new line
+\r = carriage return
+
+Common Methods:
++=
+++
+--
+<=
+>=
+var.length = length
+var.charAt(index) = gets index at string
+str.toUpperCase(); = duh
+str.toLowerCase(); = guess what it does
+Math.pow(4, 3) = exponent (3 ^ 4)
+array.pop();   = returns last value and deletes it from array
+array.push(); = adds item to last position
+array.shift(); = returns the front of the array and deletes it
+array.map(()=>{}); =  iterates through array and runs the func against every element
+var.toFixed(decimalplaces) = shows as many decimal places as prescribed
+isNaN(var) = returns true if var is not a number
+Number.isInteger(var) = returns true if var is an int
+
+Random number generator:
+
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive)
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+Ternanry Condition:
+
+Condition ?  <code if true> :  <code if false> ;
+
+Hoisting:
+1. Variables (var x - undefined)
+2. Declared functions (function x() {}) <- done in order with overwrites
+3. Actual code (this includes func expressions!)
+
+Switch Block:
+
+switch (var1) {
+  case <values that compares to var1>  :
+    <code runs>
+    break;
+  case <values that compares to var1>:
+    <code runs>
+    break;
+case <values that compares to var1>:
+    <code runs>
+    break;
+  default;
+    <code runs if no case equals var1>;
+}
