@@ -21,13 +21,73 @@ req.params.<var> = data from either GET or POST within params
 //})
 
 
-KNEX:
+KNEX (https://devhints.io/knex):
 
-knex
-  .select("brackets")
-  .from("tournaments")
-  .where({id: tournamentID})
-  .then((results) => {
-    //WILL ALWAYS RETURN AN ARRAY
-    res.json(results[0]);
-  });
+  datatypes:
+    table.increments('id')
+    table.string('account_name')
+    table.integer('age')
+    table.float('age')
+    table.decimal('balance', 8, 2)
+    table.boolean('is_admin')
+    table.date('birthday')
+    table.time('created_at')
+    table.timestamp('created_at').defaultTo(knex.fn.now())
+    table.json('profile')
+    table.jsonb('profile')
+    table.uuid('id').primary()
+
+    table.unique('email')
+    table.unique(['email', 'company_id'])
+
+  Where:
+
+    Basic Select:
+      knex
+        .select("brackets")
+        .from("tournaments")
+        .where({id: tournamentID})
+        .then((results) => {
+          //WILL ALWAYS RETURN AN ARRAY
+          res.json(results[0]);
+        });
+
+    And:
+      knex
+        .select("brackets")
+        .from("tournaments")
+        .where({id: tournamentID, name: 'My tournament'})
+        .then((results) => {
+          //WILL ALWAYS RETURN AN ARRAY
+          res.json(results[0]);
+        });
+
+    Or:
+      knex
+        .select("brackets")
+        .from("tournaments")
+        .where({id: tournamentID})
+        .orWhere({name: 'My Tournament'})
+        .then((results) => {
+          //WILL ALWAYS RETURN AN ARRAY
+          res.json(results[0]);
+        });
+
+
+  Inner Join:
+
+  knex
+    .select("tournament_id", "tournaments.name", "tournaments.is_started")
+    .from("enrollments")
+    .innerJoin("tournaments", "tournaments.id", "enrollments.tournament_id")
+    .innerJoin("users", "users.id", "enrollments.user_id")
+    .where({ 'users.id': req.params.id })
+    .then((results) => {});
+
+  Update:
+
+  knex('users')
+    .where({ id:req.params.id })
+    .update({ avatar:results.profile.avatar })
+    .then(()=>{});
+
