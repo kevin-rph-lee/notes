@@ -1,0 +1,16 @@
+Ajax Request:
+
+$.ajax({
+  url: `<URL>`,
+  data: {
+    // Body Data
+    key: value
+  },
+  method: 'GET'/'POST'
+}).done((dataFromServer) => {
+  // Do stuff from the server data
+}).catch((err) => {
+  // Do stuff with the error, usually in the form of an error code
+  // err.status === 400;
+  // err.responseText
+});
