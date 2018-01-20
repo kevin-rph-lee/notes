@@ -1,0 +1,105 @@
+#To Begin
+
+https://packagecontrol.io/installation
+
+import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
+
+https://packagecontrol.io/docs/usage
+
+Sublime -> Preferences -> Settings.
+
+{
+  "auto_complete": true,
+  "auto_complete_commit_on_tab": true,
+  "tab_size": 2,
+  "translate_tabs_to_spaces": true,
+  "trim_trailing_white_space_on_save": true,
+  "highlight_modified_tabs": true,
+  "highlight_line": true,
+  "default_encoding": "UTF-8",
+  "bold_folder_labels": false,
+  "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "tmp", "node_modules", ".sass-cache"],
+  "file_exclude_patterns": ["*.log"],
+  "ignored_packages":
+  [
+    "Vintage"
+  ]
+}
+
+#Configure GIT
+
+git config --global user.email '<email>'
+git config --global user.name '<name>'
+
+
+#Configure SSH key
+
+cd ~/.ssh
+
+Look for id_rsa.pub or id_rsa.pub
+
+If not found:
+
+eval `ssh-agent -s`
+ssh-keygen -t rsa -C "kevin.rph.lee@gmail.com"
+
+No passphrase needed
+
+Add key to ssh-agent on local machine with:
+
+ssh-add ~/.ssh/id_rsa
+
+Get char block:
+
+cat ~/.ssh/id_rsa.pub
+
+Add char block to Git Account settings screen
+
+# Check ubuntu version
+
+lsb_release -a
+
+#Setup Postgres
+
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+
+Go to postgres default user:
+
+sudo -i -u postgres
+
+Setup yourself as a user (login as postgres first):
+
+createuser --interactive
+
+Connect?:
+
+psql -U <username> -d template1 (i think this is a dummy)
+
+CREATE ROLE <name> WITH LOGIN password '<pass>';
+CREATE DATABASE <db name> OWNER <name>;
+
+#GIT cloning
+
+hard reset:
+
+git reset --hard origin/master
+
+Disconnect a local repo from remote:
+
+git remote rm origin
+
+Add a remote repo to a local:
+
+git remote add origin <your github repo URL>
+
+Find out what remote repo you are pointing to:
+
+git remote show origin
+
+#Remember to regularly check what packages need updated
+
+npm outdated
+
+#Open folder in ubuntu
+xdg-open .
