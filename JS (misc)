@@ -33,6 +33,29 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+Check for invalid charactrers:
+
+/**
+ * The following JavaScript code accepts letters (a-z and A-Z), numbers (0-9), spaces, hyphen(-), comma(,), and underscore(_) characters.
+ */
+function invalidCharacters(str){
+  if(/^[a-zA-Z0-9- ,_]*$/.test(str) == false){
+    return true;
+  }
+  return false;
+}
+
+Validate Email:
+
+/**
+ * Checks if a string is a valid email
+ */
+function validateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return (true)
+    }
+      return (false)
+  }
 
 Ternanry Condition:
 

@@ -1,0 +1,33 @@
+Http Responses Codes:
+
+res.sendStatus(XXX)
+400 = Bad Request, The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing)
+401 = Unauthorized/unauthenticaded
+403 = Request valid, but server is refusing action (permissions)
+404 = Not found
+
+res.status(400).send('Invalid email format!')
+//To read in catch block, use: err.responseText
+
+res.render('<EJS file name in views folder>',{<template vars> key: value});
+
+GET VS POST data:
+
+req.query.<var> = data within a get request
+req.body.<var> = data within a post request
+req.params.<var> = data from either GET or POST within params
+//router.get("/:id/admin", (req, res) => {
+//  console.log(req.params.id);
+//})
+
+
+KNEX:
+
+knex
+  .select("brackets")
+  .from("tournaments")
+  .where({id: tournamentID})
+  .then((results) => {
+    //WILL ALWAYS RETURN AN ARRAY
+    res.json(results[0]);
+  });

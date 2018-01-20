@@ -14,3 +14,6 @@ $.ajax({
   // err.status === 400;
   // err.responseText
 });
+
+Click button:
+
