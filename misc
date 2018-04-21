@@ -97,6 +97,16 @@ Find out what remote repo you are pointing to:
 
 git remote show origin
 
+Delete Repo:
+
+git branch -D <branch>
+
+Checkout remote repo:
+
+git fetch origin
+then checkout the branch
+
+
 #Remember to regularly check what packages need updated
 
 npm outdated

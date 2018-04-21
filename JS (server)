@@ -91,3 +91,18 @@ KNEX (https://devhints.io/knex):
     .update({ avatar:results.profile.avatar })
     .then(()=>{});
 
+  Delete:
+
+  knex('users')
+  .where({ id: 2 })
+  .del();
+
+  Inserting/Returning:
+  //Inserts a new user, grabs the newly created user ID and returns it to the front-end JS
+  knex
+    .insert({email: email, password: bcrypt.hashSync(password, 10), battlenet_id: battlenetID, avatar: results.profile.avatar})
+    .into('users')
+    .returning('id')
+    .then((results) => {
+      res.send(results);
+    });

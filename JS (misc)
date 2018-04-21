@@ -85,35 +85,38 @@ case <values that compares to var1>:
 
 Promises (To-do Research more):
 
-  /**
-   * Gets each team's roster
-   *
-   * @param {integer} tournamentID from req params
-   * @returns {array}
-   */
-  function getTeamRoster(tournamentID){
-    return knex
-     .select("tournaments.name", "users.battlenet_id","teams.team_name", "team_id", "level", "games_won", "medal_gold", "medal_silver", "medal_bronze", "users.id", "first_role", "second_role")
-     .from("enrollments")
-     .innerJoin("users", "users.id", "enrollments.user_id")
-     .innerJoin("tournaments", "tournaments.id", "enrollments.tournament_id")
-     .innerJoin("teams", "enrollments.team_id", "teams.id")
-     .where({"enrollments.tournament_id": tournamentID})
-     .orderBy("team_id", "ascd")
-     .then((playerStats) => {
-       return _.groupBy(playerStats, "team_id");
-     });
-  }
+  Promise Chain:
+
+    /**
+     * Gets each team's roster
+     *
+     * @param {integer} tournamentID from req params
+     * @returns {array}
+     */
+    function getTeamRoster(tournamentID){
+      return knex
+       .select("tournaments.name", "users.battlenet_id","teams.team_name", "team_id", "level", "games_won", "medal_gold", "medal_silver", "medal_bronze", "users.id", "first_role", "second_role")
+       .from("enrollments")
+       .innerJoin("users", "users.id", "enrollments.user_id")
+       .innerJoin("tournaments", "tournaments.id", "enrollments.tournament_id")
+       .innerJoin("teams", "enrollments.team_id", "teams.id")
+       .where({"enrollments.tournament_id": tournamentID})
+       .orderBy("team_id", "ascd")
+       .then((playerStats) => {
+         return _.groupBy(playerStats, "team_id");
+       });
+    }
 
 
-  getTeamEmails(req.params.id, req.body.teams)
-    .then(function(result) {
-      //Do stuff with the results of getTeamRoster
-    }).then(function(result) {
-      return loadScript("/article/promise-chaining/two.js");
-      //load script is some other async function?
-    }).then(function(result) {
+    getTeamEmails(req.params.id, req.body.teams)
+      .then(function(result) {
+        //Do stuff with the results of getTeamRoster
+      }).then(function(result) {
+        return loadScript("/article/promise-chaining/two.js");
+        //load script is some other async function?
+      }).then(function(result) {
 
-    });;
+      });;
+
 
 
